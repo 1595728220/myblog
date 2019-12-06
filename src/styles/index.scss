@@ -1,0 +1,67 @@
+@import './variables.scss';
+
+body {
+  height: 100%;
+}
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+#app {
+  height: 100%;
+  min-width: 900px;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+a,
+a:focus,
+a:hover {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.fr {
+  float: right;
+}
+
+.fl {
+  float: left;
+}
+
+// 文本不超过一行样式，超过一行省略号显示
+.text-ellipsis {
+  overflow: hidden; //超出文本隐藏
+  white-space: nowrap; //溢出不换行
+  text-overflow: ellipsis; //溢出省略号显示
+}
+
+// 必填项前置的星号
+.required:before {
+  content: "*";
+  color: red;
+  margin-right: 5px;
+}
+
+// 增加下划线
+.under-line {
+  text-decoration: underline;
+}
+
+.ivu-input-wrapper {
+  width: 200px !important;
+}
+
+.ivu-select {
+  width: 160px !important;
+}
+
+.ivu-btn {
+  padding: 5px 10px;
+  min-width: 70px;
+}

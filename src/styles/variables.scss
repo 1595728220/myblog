@@ -1,0 +1,245 @@
+// 颜色变量
+$red: #F56C6C;
+$grey: #909399;
+// 深色背景上的文字、导航文字
+$white: #fff;
+// 输入框内提示性文字(placehold)
+$input-color: #ccc;
+// 备注/辅助性文字
+$bz-color: #999;
+// 长篇内容文字、表单内容文字、输入框输入后文字
+$form-color: #666;
+// 标题文字、表格抬头文字、表单属性文字、重要信息文字
+$title-color: #333;
+// 通过状态文字
+$success: #67C13D;
+// 不通过退回状态、提示性文字
+$error: #F56C6C;
+// 边框颜色
+$border-color:#e8eaec;
+// 审核中状态文字
+$orange: #FF9A32;
+// 可点击文字、一些状态性文字、重点提示性文字
+$blue: #409dff;
+// 主题颜色
+$theme: #188f96;
+// $theme: #3c9495;
+
+// 距离变量
+// 组件横向间距
+$left:10px;
+// 左内边距
+$left-padding:20px;
+// 纵向间距
+$top:10px;
+$input-top:16px;
+// tab,tag的高度,
+$tab-height:40px;
+// 按钮输入框的高度
+$btn-height:34px;
+// 首页tab的宽度
+$index-tag-width:70px;
+// 其他页面的tab的宽度
+$other-tag-width:120px;
+// 头部header的高度
+$header-height:80px;
+// 学生端nav高度
+$student-nav-height:60px;
+// 学生端tab标签的高度
+$student-tab-height:50px;
+// 侧边栏宽度
+$sidebar-width:210px;
+// td高度
+$td-height:44px;
+
+// 颜色样式
+// 主体背景,表格内容背景
+.body-bg {
+  background-color: #fff;
+}
+
+// 表格抬头背景/多标签导航背景/详情页面头部颜色
+.header-bg {
+  background-color: #f5f5f5;
+}
+
+// 选中导航背景色
+.selected-nav-bg {
+  background-color: #409eff !important;
+}
+
+// 主题导航背景色
+.sider-nav-bg {
+  background-color: #001c2d !important;
+}
+
+// 按钮禁用状态
+.disable-btn-bg {
+  background-color: #ccc;
+  color: #fff;
+}
+
+// 按钮主要操作--普通状态
+.main-normal-btn-bg {
+  background-color: #409eff;
+  color: #fff;
+}
+
+// 按钮主要操作--点击或悬停状态
+.main-click-btn-bg {
+  background-color: #2779e3;
+  color: #fff;
+}
+
+
+
+// 按钮辅助操作--普通状态
+.assist-normal-btn-bg {
+  background-color: #fff;
+  color: #63afff;
+  border: 1px solid #63afff;
+}
+
+// 按钮辅助操作--普通状态(查询之类的)
+.assist-select-normal-btn-bg {
+  background-color: #fff;
+  color: #666;
+  border: 1px solid #666;
+}
+
+// 按钮辅助操作--点击或悬停状态
+.assist1-click-btn-bg {
+  background-color: #ebf5ff;
+  color: #63afff;
+  border: 1px solid #63afff;
+}
+
+// 按钮警示性操作--普通状态
+.warn-normal-btn-bg {
+  background-color: #f56c6c;
+  color: #fff;
+}
+
+// 按钮警示性操作--点击或悬停状态
+.warn-click-btn-bg {
+  background-color: #f04a4a;
+  color: #fff;
+}
+
+
+
+
+
+// 文字样式
+// 文章、通知公告正标题
+.paper-font {
+  font-size: 24px;
+  line-height: 30px;
+}
+
+// 强调性标题
+.emphasis-font {
+  font-size: 18px;
+  line-height: 24px;
+}
+
+// 弹窗标题、表头标题
+.table-font {
+  font-size: 16px;
+  line-height: 22px;
+}
+
+// 默认字号/左侧导航栏/页标签/表格内文字/顶栏/详情页正文
+.normal-font {
+  font-size: 14px !important;
+  line-height: 20px;
+}
+
+// 备注文字/辅助性文字
+.tip-font {
+  font-size: 12px;
+  line-height: 18px;
+}
+
+// 图标
+// 导航icon
+.nav-icon {
+  width: 24px;
+  height: 24px;
+}
+
+// 控件中内嵌的icon
+.insert-icon {
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+}
+
+// 功能性图标（充当按钮）
+.func-icon {
+  width: 30px;
+  height: 30px;
+}
+
+// 组件
+
+// 按钮
+.btn-component {
+  min-width: 70px;
+  height: 40px;
+  padding: 0 12px;
+  margin-right: 12px;
+}
+
+// 表单控件
+.form-component {
+  max-width: 200px;
+  height: 40px;
+  margin: 0px 12px 0 0;
+}
+
+// 表格
+// 表格选框或序号列的宽度
+.table-index-component {
+  width: 50px;
+}
+
+// 表格有“查看详情”或“删除/修改”操作的表格，操作列宽度
+.table-operate-compoent {
+  width: 120px;
+}
+
+// 视图
+
+// 顶部header视图
+.header-view {
+  padding: 16px 40px;
+}
+
+// 导航视图
+// 一级/二级导航高度
+.first-nav-view,
+.second-nav-view {
+  height: 50px;
+}
+
+// 三级导航高度
+.third-nav-view {
+  height: 44px;
+}
+
+// 导航未选中的不透明度
+.normal-nav-view {
+  opacity: 0.65 !important;
+}
+
+// 导航选中的不透明度和背景
+.selected-nav-view {
+  opacity: 1 !important;
+}
+
+// 顶部tabs
+// tab的最小宽度
+.min-tab-view {
+  min-width: 100px;
+}
