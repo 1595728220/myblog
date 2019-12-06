@@ -8,7 +8,10 @@ const routes = [
   {
     path: "/",
     name: "index",
-    component: Index
+    component: Index,
+    children: [
+      
+    ]
   }
 ];
 

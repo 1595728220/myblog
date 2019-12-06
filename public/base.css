@@ -1,0 +1,136 @@
+body,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+dl,
+li,
+dt,
+dd {
+  /* 默认有边距，都要清除 */
+  margin: 0;
+  padding: 0;
+  /*字体设置*/
+  font-size: 14px;
+  font-family: "Microsoft Yahei", sans-serif;
+  color: #333;
+  /* 去掉列表的原点 */
+  list-style: none;
+  /* 默认鼠标 */
+  cursor: default;
+}
+
+/*可选*/
+html,
+body {
+  width: 100%;
+  height: 100%;
+  font-size: 14px;
+}
+html{
+  /*火狐下隐藏滚动条*/
+  overflow:-moz-scrollbars-none;
+  word-break:break-all;
+}
+/*行内块元素*/
+input,
+img {
+  margin: 0;
+  padding: 0;
+  border: 0 none;
+  outline-style: none;
+  vertical-align: center;
+}
+
+/*行内元素*/
+a,
+a:active,
+a:visited {
+  /*下划线和颜色*/
+  text-decoration: none;
+  color: #409dff;
+}
+
+a:hover {
+  color: #333;
+}
+
+textarea {
+  /* 边框清零 */
+  border: none;
+  /* 轮廓线清零 */
+  outline: none;
+  /* 防止文本域被随意拖拽 */
+  resize: none;
+}
+
+i {
+  /*文字样式*/
+  font-style: normal;
+}
+
+/* 使用伪元素清除浮动 */
+.clearfix::before,
+.clearfix::after {
+  content: "";
+  height: 0;
+  line-height: 0;
+  display: block;
+  visibility: none;
+  clear: both;
+}
+
+.clearfix {
+  *zoom: 1;
+}
+
+/* 版心*/
+.w {
+  width: 1883px;
+  margin: 0 auto;
+}
+
+table {
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+  table-layout: fixed;
+  /* 只有定义了表格的布局算法为fixed，下面td的定义才能起作用。 */
+}
+
+.ivu-table td>div,
+td {
+  overflow: hidden;
+  /* 内容超出宽度时隐藏超出部分的内容 */
+  white-space: nowrap;
+  /* 不换行 */
+  text-overflow: ellipsis;
+  /* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用*/
+}
+
+/*滚动条样式*/
+::-webkit-scrollbar {
+  /*滚动条整体样式*/
+  width: 4px;
+  /*高宽分别对应横竖滚动条的尺寸*/
+  height: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  /*滚动条里面小方块*/
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+::-webkit-scrollbar-track {
+  /*滚动条里面轨道*/
+  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 0;
+  background: rgba(0, 0, 0, 0.02);
+}
