@@ -13,4 +13,9 @@ import { Component, Vue } from "vue-property-decorator";
 export default class App extends Vue {}
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.ivu-icon {
+  width: 50px;
+  height: 50px;
+}
+</style>
