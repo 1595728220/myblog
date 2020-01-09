@@ -2,39 +2,46 @@
   <div class="myHeader" :class="{ floatHeader: isFloat }" ref="header">
     <div class="main-width">
       <div class="left">
-        <Icon type="ios-american-football-outline" />
+        <Icon type="logo-vimeo" size="42" />
         <span class="title">KunBoSu</span>
       </div>
       <div class="right">
         <div class="my-tab">
-          <span>首页</span>
+          <router-link to="/home">首页</router-link>
         </div>
         <div class="my-tab">
-          <span>首页</span>
+          <router-link to="/home">个人项目</router-link>
+        </div>
+        <div class="my-tab">
+          <router-link to="/home">博客</router-link>
+        </div>
+        <div class="my-tab">
+          <router-link to="/home">笔记</router-link>
+        </div>
+        <div class="my-tab">
+          <router-link to="/home">随笔</router-link>
+        </div>
+        <div class="my-tab">
+          <router-link to="/home">关于</router-link>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "myHeader",
   data() {
-    return {
-      isFloat: document.documentElement.scrollTop < 120
-    };
+    return {};
   },
-  computed: {},
-  mounted() {
-    document.addEventListener("wheel", e => {
-      // eslint-disable-next-line no-console
-      this.isFloat = document.documentElement.scrollTop < 120;
-    });
+  computed: {
+    ...mapGetters("common", { mainAreaScrollTop: "getMainAreaScrollTop" }),
+    isFloat() {
+      return this.mainAreaScrollTop < 150;
+    }
   },
-  method: {},
-  destroyed() {
-    document.removeEventListener("wheel", () => {});
-  }
+  methods: {}
 };
 </script>
 <style lang="scss" scoped>
@@ -44,17 +51,37 @@ $tab-height: 50px;
 .myHeader {
   width: 100%;
   height: $height;
-  background: #082846c7;
-  color: white;
+  // box-sizing: border-box;
+  color: #333;
   line-height: $height;
   font-size: 18px;
-  opacity: 0.9;
+  // opacity: 0.9;
   position: fixed;
   top: 0;
   transition: all 0.5s ease;
-
+  background: #fff;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
+  a {
+    color: #333;
+    font-weight: 600;
+  }
+  .my-tab:hover {
+    a {
+      color: #9acfea;
+    }
+  }
   &.floatHeader {
+    background: #082846c7;
+    color: white;
     top: 50px;
+    a {
+      color: #9acfea;
+    }
+    .my-tab:hover {
+      a {
+        color: white;
+      }
+    }
   }
   .main-width {
     width: $main-width;
@@ -66,8 +93,9 @@ $tab-height: 50px;
     .left {
       flex: 1;
       .title {
-        font-size: 28px;
+        font-size: 42px;
         font-weight: bold;
+        margin-left: 10px;
       }
     }
     .right {
@@ -81,7 +109,6 @@ $tab-height: 50px;
         line-height: $tab-height;
         text-align: center;
         cursor: pointer;
-        color: #9acfea;
         &::after {
           content: "";
           display: block;
@@ -92,14 +119,12 @@ $tab-height: 50px;
           border-radius: 3px;
           margin: 0 auto;
         }
-        &:hover {
-          color: white;
-        }
+
         &:hover::after {
           width: 100%;
         }
         &:not(:last-child) {
-          margin-right: 40px;
+          margin-right: 50px;
         }
       }
     }

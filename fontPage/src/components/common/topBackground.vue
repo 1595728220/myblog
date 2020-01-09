@@ -18,7 +18,7 @@ export default {
 .topBackground {
   width: 100%;
   height: 450px;
-  background-image: url("../../assets/home/jumbotron.jpg");
+  // background-image: url("../../assets/home/jumbotron.jpg");
   padding-top: 230px;
   .top-content {
     width: $main-width;

@@ -7,7 +7,8 @@ import ViewUI from "view-design";
 // 公共方法
 import baseMethod from "./global/baseMethod";
 // import "view-design/dist/styles/iview.css";
-import "../my-theme/dist/iview.css";
+// import "../my-theme/dist/iview.css";
+import "view-design/dist/styles/iview.css";
 
 declare module "vue/types/vue" {
   interface Vue {

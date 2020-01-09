@@ -4,7 +4,7 @@
   </div>
 </template>
 <script>
-import topBackground from "@/components/home/topBackground.vue";
+import topBackground from "@/components/common/topBackground.vue";
 export default {
   name: "home",
   components: {
@@ -12,12 +12,16 @@ export default {
   },
   data() {
     return {
-      title: "人类悲欢，只觉吵闹"
+      title: "人生苦短"
     };
   }
 };
 </script>
 <style lang="scss" scoped>
 .home {
+  height: 200vh;
+  .topBackground {
+    background-image: url("../../assets/home/jumbotron.jpg");
+  }
 }
 </style>
