@@ -19,7 +19,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .home {
-  height: 200vh;
+  // height: 200vh;
   .topBackground {
     background-image: url("../../assets/home/jumbotron.jpg");
   }

@@ -10,19 +10,19 @@
           <router-link to="/home">首页</router-link>
         </div>
         <div class="my-tab">
-          <router-link to="/home">个人项目</router-link>
+          <router-link to="/project">个人项目</router-link>
         </div>
         <div class="my-tab">
-          <router-link to="/home">博客</router-link>
+          <router-link to="/blog">博客</router-link>
         </div>
         <div class="my-tab">
-          <router-link to="/home">笔记</router-link>
+          <router-link to="/notice">笔记</router-link>
         </div>
         <div class="my-tab">
-          <router-link to="/home">随笔</router-link>
+          <router-link to="/essay">随笔</router-link>
         </div>
         <div class="my-tab">
-          <router-link to="/home">关于</router-link>
+          <router-link to="/about">关于</router-link>
         </div>
       </div>
     </div>

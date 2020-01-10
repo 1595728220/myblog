@@ -2,6 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import axios from "axios";
 import ViewUI from "view-design";
 
 // 公共方法
@@ -24,8 +25,11 @@ declare module "vue/types/vue" {
     $displace: any;
     $deleteIndexOfArray: any;
     $splicing: any;
+    $axios: any;
   }
 }
+
+Vue.prototype.$axios = axios;
 
 Vue.use(ViewUI);
 Vue.use(baseMethod);
