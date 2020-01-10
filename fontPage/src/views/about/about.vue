@@ -12,13 +12,14 @@ export default {
   },
   data() {
     return {
-      title: "人生苦短"
+      title: "无情者伤人，有情者自伤"
     };
   }
 };
 </script>
 <style lang="scss" scoped>
 .about {
+  min-height: calc(100vh - 40px);
   // height: 200vh;
   .topBackground {
     background-color: #07ffea;

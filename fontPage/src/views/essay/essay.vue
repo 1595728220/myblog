@@ -12,13 +12,14 @@ export default {
   },
   data() {
     return {
-      title: "人生苦短"
+      title: "人生无完美，曲折亦风景"
     };
   }
 };
 </script>
 <style lang="scss" scoped>
 .essay {
+  min-height: calc(100vh - 40px);
   // height: 200vh;
   .topBackground {
     background-color: #487346;

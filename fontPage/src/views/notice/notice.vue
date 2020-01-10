@@ -12,13 +12,14 @@ export default {
   },
   data() {
     return {
-      title: "人生苦短"
+      title: "红颜弹指老，刹那芳华"
     };
   }
 };
 </script>
 <style lang="scss" scoped>
 .notice {
+  min-height: calc(100vh - 40px);
   // height: 200vh;
   .topBackground {
     background-color: #7eee96;

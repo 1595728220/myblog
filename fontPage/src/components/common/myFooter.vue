@@ -23,7 +23,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-$height: 30px;
+$height: 40px;
 $padding: 20px;
 .myFooter {
   width: 100%;
