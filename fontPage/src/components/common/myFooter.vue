@@ -17,7 +17,7 @@ export default {
     ]),
     clickTop() {
       // eslint-disable-next-line no-console
-      this.animationUpdateMainAreaScrollTop(500);
+      this.animationUpdateMainAreaScrollTop({ value: 0, scrollDuration: 600 });
     }
   }
 };
