@@ -14,6 +14,7 @@
 <script>
 import topBackground from "@/components/common/topBackground.vue";
 import projectItem from "@/components/common/projectItem.vue";
+import { mapState, mapActions } from "vuex";
 export default {
   name: "project",
   components: {
@@ -22,33 +23,17 @@ export default {
   },
   data() {
     return {
-      title: "事无两样，心有别",
-      requireUrl:
-        "https://api.github.com/users/1595728220/repos?sort=updated&direction=desc&visibility=all",
-      loading: false,
-      projectList: []
+      title: "事无两样，心有别"
     };
+  },
+  computed: {
+    ...mapState("project", ["requireUrl", "loading", "projectList"])
   },
   mounted() {
     this.requireMyProject();
   },
   methods: {
-    requireMyProject() {
-      this.loading = true;
-      this.$axios
-        .get(this.requireUrl)
-        .then(res => {
-          this.loading = false;
-          this.projectList = res.data;
-          // eslint-disable-next-line no-console
-          console.log(this.projectList);
-        })
-        .catch(err => {
-          // eslint-disable-next-line no-console
-          console.error(err.message);
-          this.loading = false;
-        });
-    }
+    ...mapActions("project", ["requireMyProject"])
   }
 };
 </script>
