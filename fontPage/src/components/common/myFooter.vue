@@ -3,7 +3,7 @@
     <div class="footer-main">
       <span>Power by Su KunBo</span>
       <span>个人博客( 邮箱web_skb@163.com )</span>
-      <span @click="clickTop" class="click-top">top</span>
+      <span @click="clickTop" class="click-top">TOP</span>
     </div>
   </div>
 </template>
@@ -28,12 +28,13 @@ $padding: 20px;
 .myFooter {
   width: 100%;
   height: $height;
-  background: $theme;
-  color: white;
+  // background: $theme;
+  color: #333;
   line-height: $height;
   padding: 0 $padding;
   font-size: 12px;
   text-align: center;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
   .footer-main {
     width: $main-width;
     margin: 0 auto;
