@@ -14,7 +14,7 @@
           <Icon type="ios-star" size="24" />
           <span>{{ stargazers_count }}</span>
         </Tooltip>
-        <Tooltip :content="`分叉：${stargazers_count}次`">
+        <Tooltip :content="`分叉：${forks}次`">
           <Icon type="md-git-branch" size="24" />
           <span>{{ forks }}</span>
         </Tooltip>
