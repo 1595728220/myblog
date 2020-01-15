@@ -50,7 +50,16 @@ router.get("/detail", (req, res) => {
     response200.noticeDetail = result[0]
     let content = response200.noticeDetail.content, catalog = []
     const $ = cheerio.load(content)
-    catalog = $('h1')
+    catalog = $("h1").toArray().map(el => {
+      return {
+        title: $(el).text(), children: $(el).find("h2").toArray().map(el => {
+          console.log(el)
+          return {
+            title: el.text()
+          }
+        })
+      }
+    })
     console.log(catalog)
     // response200.catalog = catalog
     res.send(response200)
