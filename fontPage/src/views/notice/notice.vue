@@ -2,6 +2,7 @@
   <div class="notice">
     <top-background :title="title"></top-background>
     <div class="notice-content">
+      <Spin size="large" v-if="loading" fix></Spin>
       <div class="left">
         <Timeline>
           <TimelineItem
@@ -62,13 +63,11 @@ export default {
     };
   },
   computed: {
-    ...mapState("notice", ["tableData"]),
+    ...mapState("notice", ["tableData", "loading"]),
     ...mapGetters("notice", ["classifyList", "totalClass", "selectKeywords"])
   },
   mounted() {
     this.loadTable();
-    // eslint-disable-next-line no-console
-    console.log(this.classifyList);
   },
   methods: {
     ...mapActions("notice", ["loadTable", "handleKeywordsChange"]),
@@ -92,11 +91,17 @@ export default {
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
+    position: relative;
+    .ivu-spin-fix {
+      z-index: 11;
+    }
     .left {
+      padding-top: 50px;
       .ivu-icon-ios-arrow-forward {
         display: none;
       }
       /deep/ .ivu-timeline-item {
+        cursor: pointer;
         &:not(:last-child) {
           padding-bottom: 50px;
         }
@@ -107,17 +112,21 @@ export default {
           .ivu-icon-ios-arrow-forward {
             display: inline-block;
           }
+          .ivu-timeline-item-content > div:first-child {
+            transform: translate(10px);
+            font-size: 24px;
+          }
         }
       }
       /deep/ .ivu-timeline-item-content {
-        cursor: pointer;
-
         & > div:first-child {
           font-size: 20px;
           height: 24px;
           line-height: 14px;
+          transition: all 0.2s;
         }
         & > div:nth-child(2) {
+          padding-left: 10px;
           display: flex;
           flex-direction: column;
           .time {

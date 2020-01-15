@@ -52,6 +52,7 @@ axios.interceptors.response.use(
       // 其他错误
       default:
         err.message = data.message;
+        Vue.prototype.$message.error(err.message);
         return Promise.reject(err);
     }
   },

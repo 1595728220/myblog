@@ -2,37 +2,57 @@
 const express = require("express")
 const pool = require("../pool")
 const resFunc = require("../response/resFunc")
+const cheerio = require('cheerio')
 let router = express.Router()
 
 router.post("/list", (req, res) => {
   let { query, keyword } = req.body
   let response400 = new resFunc(400, "缺少请求参数"),
     response500 = new resFunc(500, "查找失败，请重试"),
-    response200 = new resFunc(200, "查询成功")
+    response200 = new resFunc(200, "查询成功"),
+    keywordSQL = ""
   if (query === undefined || keyword === undefined) {
-    response400.list = []
-    response400.keywords = []
-    response400.total = 0
     res.send(response400)
     return
   }
-  query = `%${query}%`
   if (keyword !== "") {
-    keyword = `(,|^)${keyword}(,|$)`
+    keywordSQL = `and find_in_set(?, keywords) > 0`
   }
-  let sql = "select nid,title,keywords,notice_describe,update_time from notice where title like ? and keywords regexp ? order by update_time desc;select keywords from notice;select found_rows();"
+  query = `%${query}%`
+  let sql = `select nid,title,keywords,notice_describe,update_time from notice where title like ? ${keywordSQL} order by update_time desc;select keywords from notice;select found_rows();`
   pool.query(sql, [query, keyword], (err, result) => {
     if (err) {
-      response500.list = []
-      response500.keywords = []
-      response500.total = 0
       res.send(response500)
       return
     }
-    console.log(result)
     response200.list = result[0]
     response200.keywords = result[1]
     response200.total = result[2][0]["found_rows()"]
+    // setTimeout(() => { res.send(response200) },15000)
+    res.send(response200)
+  })
+})
+router.get("/detail", (req, res) => {
+  let { nid } = req.query;
+  let response400 = new resFunc(400, "缺少请求参数"),
+    response500 = new resFunc(500, "查找失败，请重试"),
+    response200 = new resFunc(200, "查询成功")
+  if (nid === undefined) {
+    res.send(response400)
+    return
+  }
+  let sql = "select nid as id,title,content from notice where nid = ?"
+  pool.query(sql, [nid], (err, result) => {
+    if (err) {
+      res.send(response500)
+      return
+    }
+    response200.noticeDetail = result[0]
+    let content = response200.noticeDetail.content, catalog = []
+    const $ = cheerio.load(content)
+    catalog = $('h1')
+    console.log(catalog)
+    // response200.catalog = catalog
     res.send(response200)
   })
 })

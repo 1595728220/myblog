@@ -35,15 +35,18 @@ const getters = {
 // actions
 const actions = {
   loadTable({ commit, state }: any) {
+    commit("updateLoading", true);
     axios
       .post(state.requireUrl, state.limitQuery)
       .then(res => {
+        commit("updateLoading", false);
         let data = res.data;
         commit("updateTableData", data.list);
         commit("updateKeywords", data.keywords);
         commit("updateTotal", data.total);
       })
       .catch(err => {
+        commit("updateLoading", false);
         // eslint-disable-next-line no-console
         console.error(err.message);
       });
@@ -56,6 +59,9 @@ const actions = {
 
 // mutations
 const mutations = {
+  updateLoading(state: any, value: boolean) {
+    state.loading = value;
+  },
   updateTableData(state: any, value: boolean) {
     state.tableData = value;
   },

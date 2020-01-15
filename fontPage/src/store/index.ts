@@ -4,6 +4,7 @@ import createPersistedState from "vuex-persistedstate";
 import common from "./modules/common";
 import project from "./modules/project";
 import notice from "./modules/notice";
+import noticeDetail from "./modules/noticeDetail";
 
 Vue.use(Vuex);
 
@@ -19,6 +20,7 @@ export default new Vuex.Store({
   modules: {
     common,
     project,
-    notice
+    notice,
+    noticeDetail
   }
 });
