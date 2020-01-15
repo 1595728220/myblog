@@ -8,20 +8,49 @@
             color="green"
             v-for="(item, index) of tableData"
             :key="index"
+            @click.native="clickToDetail(item.nid)"
           >
-            <span>{{ item.title }}</span>
+            <Icon type="ios-trophy" slot="dot" :size="24"></Icon>
+            <Icon type="ios-arrow-forward" slot="dot" :size="24"></Icon>
+            <div>{{ item.title }}</div>
+            <div>
+              <span class="description">
+                {{ item.notice_describe }}
+              </span>
+              <span class="time">{{
+                $tagTime(item.update_time, "yyyy年MM月dd日 HH时mm分")
+              }}</span>
+            </div>
           </TimelineItem>
         </Timeline>
       </div>
       <div class="right">
-        <span>分类统计</span>
+        <h2>分类统计</h2>
+        <ul>
+          <li
+            :class="{ 'is-select': selectKeywords === '' }"
+            @click="handleKeywordsChange('')"
+          >
+            <span>全部分类</span>
+            <Badge :count="totalClass" className="badge-alone"></Badge>
+          </li>
+          <li
+            v-for="(count, key, index) of classifyList"
+            :key="index"
+            :class="{ 'is-select': selectKeywords === key }"
+            @click="handleKeywordsChange(key)"
+          >
+            <span>{{ key }}</span>
+            <Badge :count="count" className="badge-alone"></Badge>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
 </template>
 <script>
 import topBackground from "@/components/common/topBackground.vue";
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapState, mapGetters, mapMutations } from "vuex";
 export default {
   name: "notice",
   components: {
@@ -33,25 +62,19 @@ export default {
     };
   },
   computed: {
-    ...mapState("notice", ["tableData"])
+    ...mapState("notice", ["tableData"]),
+    ...mapGetters("notice", ["classifyList", "totalClass", "selectKeywords"])
   },
   mounted() {
     this.loadTable();
+    // eslint-disable-next-line no-console
+    console.log(this.classifyList);
   },
   methods: {
-    ...mapActions("notice", ["loadTable"])
-    // loadTable() {
-    //   this.$axios
-    //     .post("/api/notice/list", this.limitQuery)
-    //     .then(res => {
-    //       let data = res.data;
-    //       // eslint-disable-next-line no-console
-    //       console.log(data);
-    //     })
-    //     .catch(err => {
-    //       this.$message.error(err.message);
-    //     });
-    // }
+    ...mapActions("notice", ["loadTable", "handleKeywordsChange"]),
+    clickToDetail(id) {
+      this.$router.push(`/noticeDetail/${id}`);
+    }
   }
 };
 </script>
@@ -67,6 +90,76 @@ export default {
     padding-top: 50px;
     width: $main-width;
     margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    .left {
+      .ivu-icon-ios-arrow-forward {
+        display: none;
+      }
+      /deep/ .ivu-timeline-item {
+        &:not(:last-child) {
+          padding-bottom: 50px;
+        }
+        &:hover {
+          .ivu-icon-ios-trophy {
+            display: none;
+          }
+          .ivu-icon-ios-arrow-forward {
+            display: inline-block;
+          }
+        }
+      }
+      /deep/ .ivu-timeline-item-content {
+        cursor: pointer;
+
+        & > div:first-child {
+          font-size: 20px;
+          height: 24px;
+          line-height: 14px;
+        }
+        & > div:nth-child(2) {
+          display: flex;
+          flex-direction: column;
+          .time {
+            color: #aaa;
+          }
+        }
+      }
+    }
+    .right {
+      width: 300px;
+      text-align: center;
+      & > h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+      ul {
+        border: 1px solid #333;
+        li {
+          cursor: pointer;
+          height: 40px;
+          line-height: 40px;
+          padding-left: 10px;
+          padding-right: 10px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          /deep/ .ivu-badge-count {
+            background: #19be6b;
+          }
+          &:not(:last-child) {
+            border-bottom: 1px solid #333;
+          }
+          &.is-select {
+            background: $blue;
+            color: #fff;
+            /deep/ .ivu-badge-count {
+              box-shadow: none;
+            }
+          }
+        }
+      }
+    }
   }
 }
 </style>

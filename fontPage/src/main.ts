@@ -7,6 +7,7 @@ import ViewUI from "view-design";
 
 // 单独引入message组件
 import { Message } from "view-design";
+
 // 公共方法
 import baseMethod from "./global/baseMethod";
 // import "view-design/dist/styles/iview.css";
@@ -28,6 +29,7 @@ declare module "vue/types/vue" {
     $deleteIndexOfArray: any;
     $splicing: any;
     $axios: any;
+    $message: any;
   }
 }
 
@@ -54,11 +56,14 @@ axios.interceptors.response.use(
     }
   },
   err => {
-    if (err && err.response) {
+    // eslint-disable-next-line no-console
+    console.log(err.response);
+    if (err && err.response && err.response.data && err.response.data.msg) {
       err.message = err.response.data.msg;
     } else {
       err.message = "请求超时";
     }
+    Vue.prototype.$message.error(err.message);
     return Promise.reject(err);
   }
 );
