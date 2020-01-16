@@ -96,9 +96,9 @@ export default {
     padding-top: 50px;
     width: $main-width;
     margin: 0 auto;
+    position: relative;
     display: flex;
     justify-content: space-between;
-    position: relative;
     .ivu-spin-fix {
       z-index: 11;
     }

@@ -3,6 +3,7 @@ const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
 const session = require("express-session")
 const noticeRouter = require("./routes/notice")
+const practicalRouter = require("./routes/practical")
 //定义允许跨域访问的origin列表
 let White_list = ["http://127.0.0.1:8080", "http://127.0.0.1:8081"],
   index
@@ -37,5 +38,7 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(bodyParser.json())
 
-// 挂载用户路由模块到/notice
+// 挂载博客笔记路由模块到/notice
 app.use("/notice", noticeRouter)
+// 挂载博客实用网站路由模块到/practical
+app.use("/practical", practicalRouter)
