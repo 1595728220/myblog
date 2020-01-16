@@ -1,7 +1,7 @@
 <template>
   <div class="my-index">
     <my-header></my-header>
-    <div class="main-area" @wheel="handleWheel" ref="mainArea">
+    <div class="main-area" @scroll="handleWheel" ref="mainArea">
       <router-view></router-view>
       <my-footer></my-footer>
     </div>

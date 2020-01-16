@@ -2,7 +2,8 @@ import axios from "axios";
 const state = {
   requireUrl: "/api/notice/detail",
   loading: false,
-  noticeDetail: {}
+  noticeDetail: {},
+  updateCatalog: []
 };
 
 // getters
@@ -17,6 +18,7 @@ const actions = {
         commit("updateLoading", false);
         let data = res.data;
         commit("updateNoticeDetail", data.noticeDetail);
+        commit("updateCatalog", data.catalog);
       })
       .catch(err => {
         commit("updateLoading", false);
@@ -33,6 +35,9 @@ const mutations = {
   },
   updateNoticeDetail(state: any, value: string) {
     state.noticeDetail = value;
+  },
+  updateCatalog(state: any, value: string) {
+    state.catalog = value;
   }
 };
 

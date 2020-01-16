@@ -47,22 +47,24 @@ router.get("/detail", (req, res) => {
       res.send(response500)
       return
     }
-    response200.noticeDetail = result[0]
-    let content = response200.noticeDetail.content, catalog = []
-    const $ = cheerio.load(content)
-    catalog = $("h1").toArray().map(el => {
-      return {
-        title: $(el).text(), children: $(el).find("h2").toArray().map(el => {
-          console.log(el)
-          return {
-            title: el.text()
-          }
-        })
-      }
-    })
-    console.log(catalog)
-    // response200.catalog = catalog
-    res.send(response200)
+    if (result.length > 0) {
+      response200.noticeDetail = result[0]
+      let content = result[0].content, catalog = []
+      const $ = cheerio.load(content)
+      $("h1").each((index, el) => {
+        let name = "hash" + index
+        $(el).attr("id", name)
+        catalog[index] = { title: $(el).text(), name: name }
+      })
+      response200.noticeDetail.content = $.html()
+      response200.catalog = catalog
+      res.send(response200)
+    } else {
+      response200.noticeDetail = { title: "", id: "", content: "" }
+      response200.catalog = []
+      res.send(response200)
+    }
+
   })
 })
 //导出路由模块

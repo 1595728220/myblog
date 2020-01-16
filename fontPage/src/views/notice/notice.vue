@@ -7,7 +7,12 @@
         <Timeline>
           <TimelineItem
             color="green"
-            v-for="(item, index) of tableData"
+            v-for="(item, index) of [
+              ...tableData,
+              ...tableData,
+              ...tableData,
+              ...tableData
+            ]"
             :key="index"
             @click.native="clickToDetail(item.nid)"
           >
@@ -26,25 +31,27 @@
         </Timeline>
       </div>
       <div class="right">
-        <h2>分类统计</h2>
-        <ul>
-          <li
-            :class="{ 'is-select': selectKeywords === '' }"
-            @click="handleKeywordsChange('')"
-          >
-            <span>全部分类</span>
-            <Badge :count="totalClass" className="badge-alone"></Badge>
-          </li>
-          <li
-            v-for="(count, key, index) of classifyList"
-            :key="index"
-            :class="{ 'is-select': selectKeywords === key }"
-            @click="handleKeywordsChange(key)"
-          >
-            <span>{{ key }}</span>
-            <Badge :count="count" className="badge-alone"></Badge>
-          </li>
-        </ul>
+        <div class="type-classfy" :class="{ 'is-hover': isFloat }">
+          <h2>分类统计</h2>
+          <ul>
+            <li
+              :class="{ 'is-select': selectKeywords === '' }"
+              @click="handleKeywordsChange('')"
+            >
+              <span>全部分类</span>
+              <Badge :count="totalClass" className="badge-alone"></Badge>
+            </li>
+            <li
+              v-for="(count, key, index) of classifyList"
+              :key="index"
+              :class="{ 'is-select': selectKeywords === key }"
+              @click="handleKeywordsChange(key)"
+            >
+              <span>{{ key }}</span>
+              <Badge :count="count" className="badge-alone"></Badge>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -64,7 +71,11 @@ export default {
   },
   computed: {
     ...mapState("notice", ["tableData", "loading"]),
-    ...mapGetters("notice", ["classifyList", "totalClass", "selectKeywords"])
+    ...mapGetters("notice", ["classifyList", "totalClass", "selectKeywords"]),
+    ...mapGetters("common", { mainAreaScrollTop: "getMainAreaScrollTop" }),
+    isFloat() {
+      return this.mainAreaScrollTop > 370;
+    }
   },
   mounted() {
     this.loadTable();
@@ -138,9 +149,16 @@ export default {
     .right {
       width: 300px;
       text-align: center;
-      & > h2 {
-        font-size: 24px;
-        margin-bottom: 10px;
+      .type-classfy {
+        width: 300px;
+        &.is-hover {
+          position: fixed;
+          top: 130px;
+        }
+        & > h2 {
+          font-size: 24px;
+          margin-bottom: 10px;
+        }
       }
       ul {
         border: 1px solid #333;

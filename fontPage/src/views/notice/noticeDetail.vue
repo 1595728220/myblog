@@ -6,7 +6,19 @@
       <div class="left">
         <div v-html="noticeDetail.content"></div>
       </div>
-      <div class="right"></div>
+      <div class="right">
+        <div class="hash-jump" :class="{ 'is-hover': isFloat }">
+          <div class="title">
+            <span>跳转</span>
+            <span @click="clickBack">返回</span>
+          </div>
+          <ul>
+            <li v-for="(item, index) of catalog" :key="index">
+              <a :href="'#' + item.name">{{ item.title }}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -25,14 +37,20 @@ export default {
     return {};
   },
   computed: {
-    ...mapState("noticeDetail", ["noticeDetail", "loading"]),
-    ...mapGetters("noticeDetail", [])
+    ...mapState("noticeDetail", ["noticeDetail", "loading", "catalog"]),
+    ...mapGetters("common", { mainAreaScrollTop: "getMainAreaScrollTop" }),
+    isFloat() {
+      return this.mainAreaScrollTop > 370;
+    }
   },
   mounted() {
     this.requireNoticeDetail(this.id);
   },
   methods: {
-    ...mapActions("noticeDetail", ["requireNoticeDetail"])
+    ...mapActions("noticeDetail", ["requireNoticeDetail"]),
+    clickBack() {
+      this.$router.push("/notice");
+    }
   }
 };
 </script>
@@ -53,9 +71,46 @@ export default {
     .left {
       flex: 1;
       margin-right: 50px;
+      /deep/ h1 {
+        line-height: 80px;
+      }
     }
     .right {
       width: 300px;
+      .hash-jump {
+        border: 1px solid #ccc;
+        padding: 10px;
+        padding-bottom: 0;
+        .title {
+          display: flex;
+          justify-content: space-between;
+          border-bottom: 1px solid #ccc;
+          & > span {
+            font-size: 16px;
+            font-weight: bold;
+            &:first-child {
+            }
+            &:last-child {
+              cursor: pointer;
+              text-decoration: underline;
+            }
+          }
+        }
+        &.is-hover {
+          position: fixed;
+          top: 130px;
+        }
+        li {
+          padding-left: 10px;
+          &:not(:last-child) {
+            border-bottom: 1px solid #ccc;
+          }
+        }
+        a {
+          line-height: 30px;
+          word-break: keep-all;
+        }
+      }
     }
   }
 }
