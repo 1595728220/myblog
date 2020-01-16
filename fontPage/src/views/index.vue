@@ -19,6 +19,9 @@ export default {
     myHeader,
     myFooter
   },
+  mounted() {
+    this.$refs.mainArea.scrollTop = this.mainAreaScrollTop;
+  },
   methods: {
     ...mapMutations("common", [
       "updateMainAreaScrollTop" // 将 `this.updateMainAreaScrollTop()` 映射为 `this.$store.commit('updateMainAreaScrollTop')`

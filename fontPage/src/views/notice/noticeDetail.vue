@@ -12,7 +12,7 @@
             <span>跳转</span>
             <span @click="clickBack">返回</span>
           </div>
-          <ul>
+          <ul v-if="catalog.length > 0">
             <li v-for="(item, index) of catalog" :key="index">
               <a :href="'#' + item.name">{{ item.title }}</a>
             </li>
@@ -69,8 +69,11 @@ export default {
     justify-content: space-between;
     position: relative;
     .left {
-      flex: 1;
+      width: 60%;
       margin-right: 50px;
+      & > div {
+        width: 100%;
+      }
       /deep/ h1 {
         line-height: 80px;
       }
@@ -79,17 +82,17 @@ export default {
       width: 300px;
       .hash-jump {
         border: 1px solid #ccc;
-        padding: 10px;
         padding-bottom: 0;
+        width: 300px;
         .title {
           display: flex;
           justify-content: space-between;
           border-bottom: 1px solid #ccc;
+          padding: 10px;
           & > span {
             font-size: 16px;
             font-weight: bold;
-            &:first-child {
-            }
+
             &:last-child {
               cursor: pointer;
               text-decoration: underline;
@@ -99,6 +102,9 @@ export default {
         &.is-hover {
           position: fixed;
           top: 130px;
+        }
+        ul {
+          padding: 10px;
         }
         li {
           padding-left: 10px;

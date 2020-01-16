@@ -13,13 +13,10 @@
           <router-link to="/project">个人项目</router-link>
         </div>
         <div class="my-tab">
-          <router-link to="/blog">博客</router-link>
+          <router-link to="/notice">博客</router-link>
         </div>
         <div class="my-tab">
-          <router-link to="/notice">笔记</router-link>
-        </div>
-        <div class="my-tab">
-          <router-link to="/essay">随笔</router-link>
+          <router-link to="/practical">实用</router-link>
         </div>
         <div class="my-tab">
           <router-link to="/about">关于</router-link>
@@ -101,7 +98,7 @@ $tab-height: 50px;
     .right {
       flex: 1;
       display: flex;
-      // justify-content: space-between;
+      justify-content: space-around;
       align-items: center;
       padding-left: 50px;
       .my-tab {

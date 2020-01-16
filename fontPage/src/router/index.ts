@@ -22,11 +22,6 @@ const routes = [
         component: () => import("@/views/project/project.vue")
       },
       {
-        path: "/blog",
-        name: "blog",
-        component: () => import("@/views/blog/blog.vue")
-      },
-      {
         path: "/notice",
         name: "notice",
         component: () => import("@/views/notice/notice.vue")
@@ -38,9 +33,9 @@ const routes = [
         props: true
       },
       {
-        path: "/essay",
-        name: "essay",
-        component: () => import("@/views/essay/essay.vue")
+        path: "/practical",
+        name: "practical",
+        component: () => import("@/views/practical/practical.vue")
       },
       {
         path: "/about",

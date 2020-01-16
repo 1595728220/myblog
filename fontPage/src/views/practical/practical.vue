@@ -1,12 +1,12 @@
 <template>
-  <div class="essay">
+  <div class="practical">
     <top-background :title="title"></top-background>
   </div>
 </template>
 <script>
 import topBackground from "@/components/common/topBackground.vue";
 export default {
-  name: "essay",
+  name: "practical",
   components: {
     "top-background": topBackground
   },
@@ -18,7 +18,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.essay {
+.practical {
   min-height: calc(100vh - 40px);
   // height: 200vh;
   .topBackground {
