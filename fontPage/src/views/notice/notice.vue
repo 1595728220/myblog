@@ -94,6 +94,7 @@ export default {
   }
   .notice-content {
     padding-top: 50px;
+    padding-bottom: 50px;
     width: $main-width;
     margin: 0 auto;
     position: relative;

@@ -63,6 +63,7 @@ export default {
   }
   .notice-detail-content {
     padding-top: 50px;
+    padding-bottom: 50px;
     width: $main-width;
     margin: 0 auto;
     display: flex;

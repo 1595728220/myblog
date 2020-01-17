@@ -1,6 +1,7 @@
 import axios from "axios";
 const state = {
-  requireUrl: "/api/practical/list",
+  requireMypracticalUrl: "/api/practical/list",
+  requireAddJumpTimesUrl: "/api/practical/visit",
   loading: false,
   practicalList: [],
   limitQuery: {
@@ -14,6 +15,14 @@ const state = {
 const getters = {
   searchQuery(state: any) {
     return state.limitQuery.query;
+  },
+  filterPracticalList(state: any) {
+    let checkedKeywords = state.keywords
+      .filter((el: any) => el.checked)
+      .map((el: any) => el.keyword);
+    return state.practicalList.filter((el: any) =>
+      checkedKeywords.includes(el.keywords)
+    );
   }
 };
 // actions
@@ -23,18 +32,36 @@ const actions = {
       commit("updateLoading", true);
     }
     axios
-      .post(state.requireUrl, state.limitQuery)
+      .post(state.requireMypracticalUrl, state.limitQuery)
       .then((res: any) => {
         commit("updateLoading", false);
         let data = res.data;
         commit("updatePracticalList", data.list);
-        commit("updateKeywords", data.keywords);
-        commit("updateSearchQuery", "");
+        commit(
+          "updateKeywords",
+          data.keywords.map((el: string) => {
+            return { keyword: el, checked: true };
+          })
+        );
       })
       .catch((err: any) => {
         // eslint-disable-next-line no-console
         console.error(err.message);
         commit("updateLoading", false);
+      });
+  },
+  requireAddJumpTimes({ state, dispatch }: any, pid: string | number) {
+    axios
+      .put(state.requireAddJumpTimesUrl, { pid })
+      .then((res: any) => {
+        let data = res.data;
+        // eslint-disable-next-line no-console
+        console.log(dispatch);
+        dispatch("requireMypractical");
+      })
+      .catch((err: any) => {
+        // eslint-disable-next-line no-console
+        console.error(err.message);
       });
   }
 };
@@ -52,6 +79,11 @@ const mutations = {
   },
   updateSearchQuery(state: any, value: string) {
     state.limitQuery.query = value;
+  },
+  updateKeyword(state: any, { index, checked }: any) {
+    // eslint-disable-next-line no-console
+    console.log(index, checked);
+    state.keywords[index].checked = checked;
   }
 };
 

@@ -3,14 +3,46 @@
     <top-background :title="title"></top-background>
     <div class="practical-content">
       <Spin size="large" v-if="loading" fix></Spin>
-      <Input
-        search
-        enter-button
-        placeholder="请输入关键词"
-        v-model="query"
-        @on-enter="requireMypractical"
-        @on-search="requireMypractical"
-      />
+      <div class="practical-content-header">
+        <Input
+          search
+          enter-button
+          clearable
+          placeholder="请输入关键词"
+          v-model="query"
+          @on-clear="requireMypractical"
+          @on-enter="requireMypractical"
+          @on-search="requireMypractical"
+        />
+        <Tag
+          checkable
+          color="primary"
+          @on-change="handleTagChange"
+          :name="index"
+          v-for="(item, index) of keywords"
+          :key="index"
+          >{{ item.keyword }}</Tag
+        >
+      </div>
+      <List item-layout="vertical" header="实用网址">
+        <ListItem
+          v-for="(item, index) of filterPracticalList"
+          :key="index"
+          @click.native="clickAddr(index)"
+        >
+          <ListItemMeta :description="item.practical_describe">
+            <template slot="title">
+              <span>{{ item.title }}</span>
+              <Tag color="primary">{{ item.keywords }}</Tag>
+            </template>
+          </ListItemMeta>
+          <template slot="action"
+            ><li>
+              <Icon type="ios-attach" :size="24" /> {{ item.jump_times }}
+            </li>
+          </template>
+        </ListItem>
+      </List>
     </div>
   </div>
 </template>
@@ -28,8 +60,8 @@ export default {
     };
   },
   computed: {
-    ...mapState("practical", ["practicalList", "loading", "keywords"]),
-    ...mapGetters("practical", ["searchQuery"]),
+    ...mapState("practical", ["loading", "keywords"]),
+    ...mapGetters("practical", ["searchQuery", "filterPracticalList"]),
     query: {
       get() {
         return this.searchQuery;
@@ -43,8 +75,22 @@ export default {
     this.requireMypractical();
   },
   methods: {
-    ...mapActions("practical", ["requireMypractical"]),
-    ...mapMutations("practical", ["updateSearchQuery"])
+    ...mapActions("practical", ["requireMypractical", "requireAddJumpTimes"]),
+    ...mapMutations("practical", ["updateSearchQuery", "updateKeyword"]),
+    clickAddr(index) {
+      // eslint-disable-next-line no-console
+      console.log(index);
+      let clickObj = this.filterPracticalList[index];
+      this.requireAddJumpTimes(clickObj.pid);
+      window.open(clickObj.link);
+    },
+    handleTagChange(checked, name) {
+      // eslint-disable-next-line no-console
+      console.log(checked, name);
+      this.updateKeyword({ index: name, checked });
+      // eslint-disable-next-line no-console
+      console.log(this.keywords);
+    }
   }
 };
 </script>
@@ -58,9 +104,31 @@ export default {
   }
   .practical-content {
     padding-top: 50px;
+    padding-bottom: 50px;
     width: $main-width;
     margin: 0 auto;
     position: relative;
+    .practical-content-header {
+      display: flex;
+      align-items: center;
+      & > :first-child {
+        margin-right: 10px;
+      }
+    }
+    .ivu-list-item {
+      cursor: pointer;
+      border-bottom: 1px solid #e8eaec;
+    }
+    /deep/ .ivu-list-item-meta-title .ivu-tag {
+      margin-left: 10px;
+      line-height: 20px;
+    }
+    /deep/ .ivu-input-icon {
+      right: 46px;
+    }
+    .ivu-input-wrapper {
+      width: 250px !important;
+    }
   }
 }
 </style>

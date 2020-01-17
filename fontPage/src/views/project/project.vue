@@ -27,7 +27,7 @@ export default {
     };
   },
   computed: {
-    ...mapState("project", ["requireUrl", "loading", "projectList"])
+    ...mapState("project", ["loading", "projectList"])
   },
   mounted() {
     this.requireMyProject();
