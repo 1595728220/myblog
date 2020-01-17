@@ -57,8 +57,6 @@ axios.interceptors.response.use(
     }
   },
   err => {
-    // eslint-disable-next-line no-console
-    console.log(err.response);
     if (err && err.response && err.response.data && err.response.data.msg) {
       err.message = err.response.data.msg;
     } else {

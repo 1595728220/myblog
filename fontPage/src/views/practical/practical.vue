@@ -78,18 +78,12 @@ export default {
     ...mapActions("practical", ["requireMypractical", "requireAddJumpTimes"]),
     ...mapMutations("practical", ["updateSearchQuery", "updateKeyword"]),
     clickAddr(index) {
-      // eslint-disable-next-line no-console
-      console.log(index);
       let clickObj = this.filterPracticalList[index];
       this.requireAddJumpTimes(clickObj.pid);
       window.open(clickObj.link);
     },
     handleTagChange(checked, name) {
-      // eslint-disable-next-line no-console
-      console.log(checked, name);
       this.updateKeyword({ index: name, checked });
-      // eslint-disable-next-line no-console
-      console.log(this.keywords);
     }
   }
 };

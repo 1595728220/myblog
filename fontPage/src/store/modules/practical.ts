@@ -54,9 +54,6 @@ const actions = {
     axios
       .put(state.requireAddJumpTimesUrl, { pid })
       .then((res: any) => {
-        let data = res.data;
-        // eslint-disable-next-line no-console
-        console.log(dispatch);
         dispatch("requireMypractical");
       })
       .catch((err: any) => {
@@ -81,8 +78,6 @@ const mutations = {
     state.limitQuery.query = value;
   },
   updateKeyword(state: any, { index, checked }: any) {
-    // eslint-disable-next-line no-console
-    console.log(index, checked);
     state.keywords[index].checked = checked;
   }
 };

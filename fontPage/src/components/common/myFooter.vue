@@ -16,7 +16,6 @@ export default {
       "animationUpdateMainAreaScrollTop" // 将 `this.updateMainAreaScrollTop()` 映射为 `this.$store.commit('updateMainAreaScrollTop')`
     ]),
     clickTop() {
-      // eslint-disable-next-line no-console
       this.animationUpdateMainAreaScrollTop({ value: 0, scrollDuration: 600 });
     }
   }
