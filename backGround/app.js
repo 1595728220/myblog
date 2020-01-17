@@ -5,7 +5,7 @@ const session = require("express-session")
 const noticeRouter = require("./routes/notice")
 const practicalRouter = require("./routes/practical")
 //定义允许跨域访问的origin列表
-let White_list = ["http://127.0.0.1:8080", "http://127.0.0.1:8081"],
+let White_list = ["http://127.0.0.1:8080", "http://127.0.0.1:8081", "http://www.blog.urlip.cn", "http://blog.urlip.cn"],
   index
 let port = 8058
 let app = express()
