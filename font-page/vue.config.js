@@ -3,7 +3,7 @@ module.exports = {
   devServer: {
     proxy: {
       "/api": {
-        target: "http://192.168.31.225:8058", // 测试
+        target: "http://127.0.0.1:8058", // 测试
         // target: 'http://192.168.31.57:10010', // 测试
         // target: 'http://192.168.31.135:6677', // jss
         // target: 'http://192.168.31.75:10010', // yx 本地
