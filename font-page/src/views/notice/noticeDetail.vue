@@ -72,11 +72,16 @@ export default {
     .left {
       width: 60%;
       margin-right: 50px;
+      padding: 0 30px;
+      overflow-x: hidden;
       & > div {
         width: 100%;
       }
       /deep/ h1 {
         line-height: 80px;
+      }
+      pre {
+        width: 100%;
       }
     }
     .right {
