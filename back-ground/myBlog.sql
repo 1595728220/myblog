@@ -277,3 +277,9 @@ values
     "模拟用户数据的接口",
     0
   );
+create table user(
+  uid int primary key auto_increment comment "用户编号",
+  username varchar(128) comment "用户名",
+  password varchar(128) comment "密码"
+);
+insert into user values(null,"skb","123456")
