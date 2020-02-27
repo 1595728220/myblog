@@ -8,7 +8,7 @@ export default function lazyLoad(componentfn) {
                 component: null
             }
         }
-        async componentWillMount() {
+        async componentDidMount() {
             const { default: component } = await componentfn();
             this.setState({ component })
         }

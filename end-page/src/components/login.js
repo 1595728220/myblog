@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { Input, Button, message } from 'antd';
+import {
+    Redirect,
+} from "react-router-dom"
 import axios from "axios"
 const Login = () => {
     const [userName, setUserName] = useState(""),
-        [password, setPassword] = useState("")
+        [password, setPassword] = useState(""),
+        [isLogin, setLogin] = useState(false)
     let handleUserNameChange = (e) => {
         setUserName(e.target.value)
     }
@@ -13,6 +17,7 @@ const Login = () => {
     let requireUserState = () => {
         axios.get("/api/user/state", { withCredentials: true }).then(res => {
             message.success(res.data.message)
+            setLogin(true)
             setUserName("")
             setPassword("")
         }).catch(err => {
@@ -29,6 +34,7 @@ const Login = () => {
         } else {
             axios.post("/api/user/login", { username: userName, password: password }).then(res => {
                 message.success(res.data.message)
+                setLogin(true)
                 setUserName("")
                 setPassword("")
             }).catch(err => {
@@ -39,6 +45,9 @@ const Login = () => {
     useEffect(() => {
         requireUserState()
     }, [])
+    if (isLogin) {
+        return <Redirect to="/home" />
+    }
     return (
         <div className="login-content">
             <div className="login-box">
